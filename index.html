@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Badge</title>
+	<script src="https://fb.me/react-0.13.0.js"></script>
+	<script src="http://fb.me/JSXTransformer-0.13.0.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+	
+</body>
+<!--JSX compiles to JS-->
+<script type="text/jsx">
+	//Properties: It is like a sprinkler on the cookie
+	//Step:2 => Options object
+	var options = {
+		title: 'Inbox',
+		number: 32
+	};
+
+	var secondOptions = {
+		title: 'Message',
+		number: 0
+	};
+	//Step:1 => All the dynamically placed component should be replaced by curly braces
+	var Badge = React.createClass({
+		render: function() {
+			return <button className="btn btn-primary" type="button">
+			  {this.props.title} <span className="badge">{this.props.number}</span>
+			</button>
+		}
+	});
+
+	var Forms = React.createClass({
+		render: function() {
+			return <form>
+				<Badge title={this.props.title} number={this.props.number}/>
+			</form>
+		}
+	});
+	//Step:3 => Now Options object is avaiable inside the Badge componenet
+	var element = React.createElement(Badge, options);
+	var forms = React.createElement(Forms, secondOptions);
+
+	//React after you render this class, please place it in my body tag
+	React.render(element, document.body);
+	React.render(forms, document.body);
+</script>
+</html>
